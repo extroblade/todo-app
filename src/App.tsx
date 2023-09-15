@@ -1,6 +1,5 @@
-import './App.css';
-import { TodoList } from './components/Todo.tsx';
-import { iTodo } from './types';
+import { TodoList } from '@/components/TodoList.tsx';
+import { iTodo } from '@/types';
 const todos: iTodo[] = [
   {
     id: 1,
@@ -21,11 +20,10 @@ const todos: iTodo[] = [
 
 function App() {
   return (
-    <>
+    <div className={'max-w-3xl m-10 bg-sky-200 px-6 py-12 rounded-lg flex flex-col items-center justify-center'}>
       <h2>ToDos</h2>
-      <h1 className="text-3xl font-bold underline text-red-400">Hello world!</h1>
       <TodoList todos={todos} />
-    </>
+    </div>
   );
 }
 

@@ -1,34 +1,21 @@
 import { FC } from 'react';
-import { iTodo } from '../types';
+import { iTodo } from '@/types';
+import { Checkbox } from "@/components/ui/checkbox.tsx";
+import { Button } from "@/components/ui/button.tsx";
 
-const generateId = () => (Math.random() * 100).toString(36);
 export const Todo: FC<{ todo: iTodo }> = ({ todo }) => {
   const { completed, value } = todo;
   return (
-    <div className={''}>
-      <input type="checkbox" defaultChecked={completed} />
-      <div>{value}</div>
-      {generateId()}
-    </div>
-  );
-};
-
-export const TodoList: FC<{ todos: iTodo[] }> = ({ todos }) => {
-  return (
-    <div>
-      <input type="text" placeholder={'What needs to be done?'} />
-      {todos.map((todo: iTodo) => (
-        <Todo todo={todo} key={todo.id} />
-      ))}
-      <div className={'flex'}>
-        <p>{todos.length} items left</p>
-        <div>
-          <button>All</button>
-          <button>Active</button>
-          <button>Completed</button>
-        </div>
-        <button>Clear completed</button>
+    <div className={'flex p-3 mb-3 rounded-lg border-solid border-2 border-sky-500 justify-between'}>
+      <div className={'flex gap-5 items-center'}>
+        <Checkbox defaultChecked={completed} />
+        <div>{value}</div>
+      </div>
+      <div>
+        <Button>Delete</Button>
       </div>
     </div>
   );
 };
+
+
