@@ -1,21 +1,53 @@
 import { FC } from 'react';
-import { iTodo } from '@/types';
 import { Checkbox } from '@/components/ui/checkbox.tsx';
-import { Button } from '@/components/ui/button.tsx';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog.tsx';
+import { Trash } from 'lucide-react';
+import { useStore } from '@/store';
+import { iTodo } from '@/types';
 
 export const Todo: FC<{ todo: iTodo }> = ({ todo }) => {
-  const { completed, value } = todo;
+  const { id, completed, value } = todo;
+  const deleteTodo = useStore((state) => state.deleteOneTodo);
+  const switchTodoState = useStore((state) => state.changeTodoState);
+
   return (
-    <div
-      className={'flex p-3 mb-3 rounded-lg border-solid border-2 border-sky-500 justify-between'}
+    <label
+      className={`cursor-pointer flex items-center gap-5 max-w-2xl p-2 mb-3 rounded-lg border-solid border-2 border-sky-500 justify-between ${
+        completed && 'text-gray-500 line-through'
+      }`}
     >
-      <div className={'flex gap-5 items-center'}>
-        <Checkbox defaultChecked={completed} />
-        <div>{value}</div>
+      <div className={'flex gap-2 items-center'}>
+        <Checkbox onClick={() => switchTodoState(id)} checked={completed} />
+        <p className={'max-w-sm break-all font-medium uppercase'}>{value}</p>
       </div>
-      <div>
-        <Button>Delete</Button>
+
+      <div className={'flex items-center justify-center'}>
+        <AlertDialog>
+          <AlertDialogTrigger title={'Delete todo'}>
+            <Trash className={'text-red-400 hover:text-red-600'} />
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={() => deleteTodo(id)}>Continue</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
-    </div>
+    </label>
   );
 };

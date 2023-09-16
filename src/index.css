@@ -74,3 +74,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+#root {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+}
