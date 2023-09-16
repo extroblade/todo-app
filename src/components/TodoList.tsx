@@ -89,9 +89,7 @@ export const TodoList: FC<{ todos: iTodo[] }> = ({ todos }) => {
           <Separator className={'mt-4'} />
 
           <div className={'flex justify-between items-center mt-5 gap-5'}>
-            <p className="leading-7 w-28">
-              {active(todos).length} item{active(todos).length > 1 && 's'} left
-            </p>
+            <p className="leading-7 w-28">{active(todos).length} active left</p>
             <TabsList>
               <TabsTrigger value="all">All</TabsTrigger>
               <TabsTrigger value="active">Active</TabsTrigger>

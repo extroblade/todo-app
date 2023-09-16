@@ -23,7 +23,7 @@ export const Todo: FC<{ todo: iTodo }> = ({ todo }) => {
   return (
     <label
       className={`cursor-pointer bg-sky-100 hover:bg-sky-200 flex items-center gap-5 max-w-2xl p-2 mb-3 rounded-lg border-solid border-2 border-sky-500 justify-between ${
-        completed && 'text-gray-500 bg-gray-300 border-gray-500 line-through'
+        completed && 'text-gray-500 bg-gray-300 hover:bg-gray-400 border-gray-500 line-through'
       }`}
     >
       <div className={'flex gap-2 items-center'}>
