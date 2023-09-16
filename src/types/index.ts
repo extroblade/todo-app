@@ -1,5 +1,6 @@
 export interface iTodo {
-  id: string | number;
+  id: string;
   value: string;
   completed: boolean;
+  created: number;
 }
