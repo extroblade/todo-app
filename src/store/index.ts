@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { iTodo } from '@/types';
+import { iStore, iTodo } from '@/types';
 import { switchTodoState } from '@/utils/todos.ts';
-import { generateId } from '@/utils/generate.ts';
+const generateId = () => (Math.random() * 100).toString(36);
 
 const initialTodos: iTodo[] = [
   {
@@ -30,14 +30,6 @@ const initialTodos: iTodo[] = [
   },
 ];
 
-interface iStore {
-  todos: iTodo[];
-  changeTodoState: (id: string) => void;
-  clearCompletedTodos: () => void;
-  createNewTodo: (value: string) => void;
-  deleteOneTodo: (id: string) => void;
-}
-
 export const useStore = create<iStore>((set) => ({
   todos: initialTodos,
   changeTodoState: (id) =>
@@ -46,10 +38,7 @@ export const useStore = create<iStore>((set) => ({
     })),
   createNewTodo: (value) =>
     set((state) => ({
-      todos: [
-        ...state.todos,
-        { id: generateId(), completed: false, value: value, created: Date.now() },
-      ],
+      todos: [...state.todos, { id: generateId(), completed: false, value, created: Date.now() }],
     })),
   clearCompletedTodos: () =>
     set((state) => ({
@@ -57,10 +46,6 @@ export const useStore = create<iStore>((set) => ({
     })),
   deleteOneTodo: (id) =>
     set((state) => ({
-      todos: state.todos.filter((todo) => todo.id !== id),
-    })),
-  deleteAllTodos: () =>
-    set(() => ({
-      todos: [],
+      todos: state.todos.filter((todo: iTodo) => todo.id !== id),
     })),
 }));
