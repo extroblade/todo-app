@@ -1,8 +1,6 @@
 import { TodoList } from '@/components/TodoList.tsx';
-import { useStore } from '@/store';
 
 function App() {
-  const todos = useStore((state) => state.todos).sort((a, b) => a.created - b.created);
 
   return (
     <div
@@ -11,7 +9,7 @@ function App() {
       }
     >
       <h1 className="scroll-m-20 mb-5 text-4xl font-extrabold tracking-tight lg:text-5xl">ToDos</h1>
-      <TodoList todos={todos} />
+      <TodoList />
     </div>
   );
 }

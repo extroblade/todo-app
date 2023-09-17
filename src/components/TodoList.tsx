@@ -1,5 +1,4 @@
 import { FC, FormEvent, useState } from 'react';
-import { iTodo } from '@/types';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
@@ -20,8 +19,9 @@ import {
 } from '@/components/ui/alert-dialog.tsx';
 import { TodoScroll } from '@/components/TodoScroll.tsx';
 
-export const TodoList: FC<{ todos: iTodo[] }> = ({ todos }) => {
+export const TodoList: FC= () => {
   const [value, setValue] = useState<string>('');
+  const todos = useStore(state => state.todos);
   const clearInput = () => {
     if (!value) {
       return;
