@@ -13,7 +13,6 @@ import {
 } from '@/components/ui/alert-dialog.tsx';
 import { Trash } from 'lucide-react';
 import { useStore } from '@/store';
-import { iTodo } from '@/types';
 
 export const Todo: FC<{ id: string }> = ({ id }) => {
   const todo = useStore(state => state.todos).find(td => td.id === id);
