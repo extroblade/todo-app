@@ -15,11 +15,11 @@ import { Trash } from 'lucide-react';
 import { useStore } from '@/store';
 import { iTodo } from '@/types';
 
-export const Todo: FC<{ todo: iTodo }> = ({ todo }) => {
-  const { id, completed, value } = todo;
+export const Todo: FC<{ id: string }> = ({ id }) => {
+  const todo = useStore(state => state.todos).find(td => td.id === id);
+  const { completed, value } = todo || {};
   const deleteTodo = useStore((state) => state.deleteOneTodo);
   const switchTodoState = useStore((state) => state.changeTodoState);
-
   return (
     <label
       className={`cursor-pointer bg-sky-100 hover:bg-sky-200 flex items-center gap-5 max-w-2xl p-2 mb-3 rounded-lg border-solid border-2 border-sky-500 justify-between ${

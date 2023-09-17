@@ -1,6 +1,5 @@
 import { FC, FormEvent, useState } from 'react';
 import { iTodo } from '@/types';
-import { Todo } from './Todo.tsx';
 import { Button } from '@/components/ui/button.tsx';
 import { Input } from '@/components/ui/input.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
@@ -19,17 +18,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog.tsx';
-import { ScrollArea } from '@/components/ui/scroll-area.tsx';
+import { TodoScroll } from '@/components/TodoScroll.tsx';
 
-const renderTodos = (todos: iTodo[]) => (
-  <ScrollArea className="bg-white h-[50vh] w-full rounded-md border p-4">
-    {todos?.length ? (
-      todos.map((todo: iTodo) => <Todo todo={todo} key={todo.id} />)
-    ) : (
-      <p className={'flex items-center justify-center font-medium uppercase'}>nothing found</p>
-    )}
-  </ScrollArea>
-);
 export const TodoList: FC<{ todos: iTodo[] }> = ({ todos }) => {
   const [value, setValue] = useState<string>('');
   const clearInput = () => {
@@ -82,9 +72,15 @@ export const TodoList: FC<{ todos: iTodo[] }> = ({ todos }) => {
 
       <div className={'flex w-full p-2 gap-5'}>
         <Tabs defaultValue="all" className="w-full select-none">
-          <TabsContent value="all">{renderTodos(todos)}</TabsContent>
-          <TabsContent value="active">{renderTodos(active(todos))}</TabsContent>
-          <TabsContent value="completed">{renderTodos(completed(todos))}</TabsContent>
+          <TabsContent value="all">
+            <TodoScroll todos={todos} />
+          </TabsContent>
+          <TabsContent value="active">
+            <TodoScroll todos={active(todos)} />
+          </TabsContent>
+          <TabsContent value="completed">
+            <TodoScroll todos={completed(todos)} />
+          </TabsContent>
 
           <Separator className={'mt-4'} />
 
