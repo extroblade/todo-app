@@ -5,7 +5,6 @@ import { Separator } from '@/components/ui/separator.tsx';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.tsx';
 import { active, completed } from '@/utils/todos.ts';
 import { Send, X } from 'lucide-react';
-import { useStore } from '@/store';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,15 +17,16 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog.tsx';
 import { TodoScroll } from '@/components/TodoScroll.tsx';
+import { useClearCompletedTodos, useCreateTodo, useTodos } from '@/hooks';
 
 export const TodoList: FC = () => {
   const [value, setValue] = useState<string>('');
-  const todos = useStore((state) => state.todos).sort((a, b) => a.created - b.created);
+  const todos = useTodos();
   const clearInput = () => {
     setValue(() => '');
   };
-  const createNewTodo = useStore((state) => state.createNewTodo);
-  const clearCompletedTodos = useStore((state) => state.clearCompletedTodos);
+  const createNewTodo = useCreateTodo();
+  const clearCompletedTodos = useClearCompletedTodos();
   const submitTodo = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     createNewTodo(value);

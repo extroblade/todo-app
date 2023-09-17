@@ -12,12 +12,12 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog.tsx';
 import { Trash } from 'lucide-react';
-import { useStore } from '@/store';
+import { useDeleteTodos, useTodo, useToggleTodoState } from '@/hooks';
 
 export const Todo: FC<{ id: string }> = ({ id }) => {
-  const deleteTodo = useStore((state) => state.deleteOneTodo);
-  const switchTodoState = useStore((state) => state.changeTodoState);
-  const todo = useStore((state) => state.todos).find((td) => td.id === id);
+  const deleteTodo = useDeleteTodos();
+  const switchTodoState = useToggleTodoState();
+  const todo = useTodo(id);
   if (!todo) {
     return <p>wrong id</p>;
   }
