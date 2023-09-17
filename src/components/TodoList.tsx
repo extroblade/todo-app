@@ -21,7 +21,7 @@ import { TodoScroll } from '@/components/TodoScroll.tsx';
 
 export const TodoList: FC= () => {
   const [value, setValue] = useState<string>('');
-  const todos = useStore(state => state.todos);
+  const todos = useStore(state => state.todos).sort((a,b) => a.created - b.created);
   const clearInput = () => {
     if (!value) {
       return;
