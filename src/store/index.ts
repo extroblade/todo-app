@@ -1,4 +1,4 @@
-import { create, StateCreator } from "zustand";
+import { create, StateCreator } from 'zustand';
 import { iStore, iTodo } from '@/types';
 import { switchTodoState } from '@/utils/todos.ts';
 const generateId = () => (Math.random() * 100).toString(36);
@@ -47,9 +47,7 @@ export const storeCreator: StateCreator<iStore> = (set) => ({
   deleteOneTodo: (id) =>
     set((state) => ({
       todos: state.todos.filter((todo: iTodo) => todo.id !== id),
-    })),})
+    })),
+});
 
-
-
-export const useStore = create<iStore>()(storeCreator)
-
+export const useStore = create<iStore>()(storeCreator);

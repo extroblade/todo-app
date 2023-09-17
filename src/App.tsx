@@ -1,7 +1,6 @@
 import { TodoList } from '@/components/TodoList.tsx';
 
 function App() {
-
   return (
     <div
       className={

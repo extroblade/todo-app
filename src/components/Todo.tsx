@@ -17,9 +17,9 @@ import { useStore } from '@/store';
 export const Todo: FC<{ id: string }> = ({ id }) => {
   const deleteTodo = useStore((state) => state.deleteOneTodo);
   const switchTodoState = useStore((state) => state.changeTodoState);
-  const todo = useStore(state => state.todos).find(td => td.id === id);
+  const todo = useStore((state) => state.todos).find((td) => td.id === id);
   if (!todo) {
-    return <p>wrong id</p>
+    return <p>wrong id</p>;
   }
   const { completed, value } = todo;
   return (

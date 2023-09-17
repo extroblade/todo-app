@@ -1,8 +1,8 @@
 import * as zustand from 'zustand';
 import { act } from '@testing-library/react';
-import { iTodo } from "../src/types";
+import { iTodo } from '../src/types';
 const { create: actualCreate, createStore: actualCreateStore } =
-await vi.importActual<typeof zustand>('zustand');
+  await vi.importActual<typeof zustand>('zustand');
 
 const initialTodos: iTodo[] = [
   {
@@ -36,7 +36,7 @@ export const storeResetFns = new Set<() => void>();
 export const create = (<T>() => {
   return (stateCreator: zustand.StateCreator<T>) => {
     const store = actualCreate(stateCreator);
-    const initialState = {...store.getState(), todos: initialTodos};
+    const initialState = { ...store.getState(), todos: initialTodos };
     storeResetFns.add(() => {
       store.setState(initialState, true);
     });
@@ -46,7 +46,7 @@ export const create = (<T>() => {
 
 export const createStore = (<T>(stateCreator: zustand.StateCreator<T>) => {
   const store = actualCreateStore(stateCreator);
-  const initialState = {...store.getState(), todos: initialTodos};
+  const initialState = { ...store.getState(), todos: initialTodos };
   storeResetFns.add(() => {
     store.setState(initialState, true);
   });
