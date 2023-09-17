@@ -23,10 +23,6 @@ export const TodoList: FC= () => {
   const [value, setValue] = useState<string>('');
   const todos = useStore(state => state.todos).sort((a,b) => a.created - b.created);
   const clearInput = () => {
-    if (!value) {
-      return;
-    }
-
     setValue(() => '');
   };
   const createNewTodo = useStore((state) => state.createNewTodo);

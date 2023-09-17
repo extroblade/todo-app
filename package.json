@@ -1,5 +1,5 @@
 {
-  "name": "mindbox-todo",
+  "name": "todo-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -38,6 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "@vitest/coverage-v8": "^0.34.4",
     "autoprefixer": "^10.4.15",
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
