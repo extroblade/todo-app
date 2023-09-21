@@ -2,7 +2,7 @@ import { create, StateCreator } from 'zustand';
 import { iStore, iTodo } from '@/types';
 import { switchTodoState } from '@/utils/todos.ts';
 const generateId = () => (Math.random() * 100).toString(36);
-if (!localStorage.getItem('todos') ) {
+if (!localStorage.getItem('todos')) {
   localStorage.setItem('todos', '[]');
 }
 const initialTodos: iTodo[] = JSON.parse(localStorage.getItem('todos') || '') || [];

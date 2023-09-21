@@ -1,6 +1,5 @@
 ## Todo App
 
-
 ---
 
 ### React + TypeScript + Zustand
