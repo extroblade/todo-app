@@ -1,6 +1,12 @@
 import { TodoList } from '@/components/TodoList.tsx';
+import { useEffect } from "react";
+import { useTodos } from "@/hooks";
 
 function App() {
+  const todos = useTodos();
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos]);
   return (
     <div
       className={

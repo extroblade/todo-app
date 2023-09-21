@@ -1,4 +1,4 @@
-## Todo App (without storage)
+## Todo App
 
 
 ---
