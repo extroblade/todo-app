@@ -1,6 +1,6 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { expect } from "vitest";
+import { expect } from 'vitest';
 import { TodoList } from '@/components/TodoList.tsx';
 
 describe('TodoList', () => {
@@ -123,7 +123,7 @@ describe('TodoList', () => {
 
     expect(await screen.findByText(/2 active left/i)).toBeInTheDocument();
   });
-  it('should toggle todos\' state', async () => {
+  it("should toggle todos' state", async () => {
     const user = userEvent.setup();
     renderTodos();
 

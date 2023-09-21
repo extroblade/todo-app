@@ -32,4 +32,3 @@ export const useDeleteAllTodos = () => {
 export const useDeleteCompletedTodos = () => {
   return useStore((state) => state.deleteCompletedTodos);
 };
-

@@ -17,7 +17,13 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog.tsx';
 import { TodoScroll } from '@/components/TodoScroll.tsx';
-import { useClearCompletedTodos, useCreateTodo, useDeleteAllTodos, useDeleteCompletedTodos, useTodos } from "@/hooks";
+import {
+  useClearCompletedTodos,
+  useCreateTodo,
+  useDeleteAllTodos,
+  useDeleteCompletedTodos,
+  useTodos,
+} from '@/hooks';
 
 export const TodoList: FC = () => {
   const [value, setValue] = useState<string>('');
@@ -106,9 +112,21 @@ export const TodoList: FC = () => {
             </AlertDialog>
           </div>
         </Tabs>
-        <div className={'flex flex-col md:flex-row justify-center md:justify-between gap-5 items-center'}>
-          <Button className={'bg-red-500'} onClick={deleteAllTodos} disabled={!todos.length}>Delete all</Button>
-          <Button className={'bg-red-500'} onClick={deleteCompletedTodos} disabled={!todos.find((todo) => todo.completed)}>Delete completed</Button>
+        <div
+          className={
+            'flex flex-col md:flex-row justify-center md:justify-between gap-5 items-center'
+          }
+        >
+          <Button className={'bg-red-500'} onClick={deleteAllTodos} disabled={!todos.length}>
+            Delete all
+          </Button>
+          <Button
+            className={'bg-red-500'}
+            onClick={deleteCompletedTodos}
+            disabled={!todos.find((todo) => todo.completed)}
+          >
+            Delete completed
+          </Button>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ export const storeCreator: StateCreator<iStore> = (set) => ({
     })),
   deleteAllTodos: () =>
     set(() => ({
-      todos: []
+      todos: [],
     })),
   deleteCompletedTodos: () =>
     set((state) => ({
