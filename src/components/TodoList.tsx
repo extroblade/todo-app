@@ -48,7 +48,7 @@ export const TodoList: FC = () => {
           <Send size={18} strokeWidth={2} />
         </Button>
         <Input
-          className={'px-12 font-medium text-lg'}
+          className={'px-12 font-medium text-sm md:text-lg'}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           type="text"
@@ -59,7 +59,7 @@ export const TodoList: FC = () => {
           disabled={!value}
           title={'Clear input'}
           variant={'ghost'}
-          className={'absolute w-8 p-0 h-8 right-3.5 top-3 '}
+          className={'absolute w-8 p-0 h-8 right-3.5 top-3'}
         >
           <X />
         </Button>
@@ -80,7 +80,7 @@ export const TodoList: FC = () => {
 
           <Separator className={'mt-4'} />
 
-          <div className={'flex justify-between items-center mt-5 gap-5'}>
+          <div className={'flex flex-col justify-between items-center mt-5 gap-5 md:flex-row'}>
             <p className="leading-7 w-28">{active(todos).length} active left</p>
             <TabsList>
               <TabsTrigger value="all">All</TabsTrigger>

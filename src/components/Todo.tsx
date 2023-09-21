@@ -30,7 +30,7 @@ export const Todo: FC<{ id: string }> = ({ id }) => {
     >
       <div className={'flex gap-2 items-center'}>
         <Checkbox onClick={() => switchTodoState(id)} checked={completed} />
-        <p className={'max-w-sm break-all font-medium uppercase'}>{value}</p>
+        <p className={'max-w-sm break-all text-sm md:text-base font-medium uppercase'}>{value}</p>
       </div>
 
       <div className={'flex items-center justify-center'}>
