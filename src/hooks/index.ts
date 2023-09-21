@@ -1,7 +1,7 @@
 import { useStore } from '@/store';
 import { iTodo } from '@/types';
 
-export const useDeleteTodos = (): ((id: string) => void) => {
+export const useDeleteOneTodo = (): ((id: string) => void) => {
   return useStore((state) => state.deleteOneTodo);
 };
 
@@ -24,3 +24,12 @@ export const useCreateTodo = () => {
 export const useClearCompletedTodos = () => {
   return useStore((state) => state.clearCompletedTodos);
 };
+
+export const useDeleteAllTodos = () => {
+  return useStore((state) => state.deleteAllTodos);
+};
+
+export const useDeleteCompletedTodos = () => {
+  return useStore((state) => state.deleteCompletedTodos);
+};
+

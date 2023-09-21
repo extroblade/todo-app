@@ -17,7 +17,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog.tsx';
 import { TodoScroll } from '@/components/TodoScroll.tsx';
-import { useClearCompletedTodos, useCreateTodo, useTodos } from '@/hooks';
+import { useClearCompletedTodos, useCreateTodo, useDeleteAllTodos, useDeleteCompletedTodos, useTodos } from "@/hooks";
 
 export const TodoList: FC = () => {
   const [value, setValue] = useState<string>('');
@@ -27,6 +27,8 @@ export const TodoList: FC = () => {
   };
   const createNewTodo = useCreateTodo();
   const clearCompletedTodos = useClearCompletedTodos();
+  const deleteAllTodos = useDeleteAllTodos();
+  const deleteCompletedTodos = useDeleteCompletedTodos();
   const submitTodo = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     createNewTodo(value);
@@ -66,7 +68,7 @@ export const TodoList: FC = () => {
       </form>
       <Separator className={'mt-4'} />
 
-      <div className={'flex w-full p-2 gap-5'}>
+      <div className={'flex flex-col w-full p-2 gap-5'}>
         <Tabs defaultValue="all" className="w-full select-none">
           <TabsContent value="all">
             <TodoScroll todos={todos} />
@@ -104,6 +106,10 @@ export const TodoList: FC = () => {
             </AlertDialog>
           </div>
         </Tabs>
+        <div className={'flex flex-col md:flex-row justify-center md:justify-between gap-5 items-center'}>
+          <Button className={'bg-red-500'} onClick={deleteAllTodos} disabled={!todos.length}>Delete all</Button>
+          <Button className={'bg-red-500'} onClick={deleteCompletedTodos} disabled={!todos.find((todo) => todo.completed)}>Delete completed</Button>
+        </div>
       </div>
     </div>
   );

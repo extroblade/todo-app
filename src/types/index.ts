@@ -11,4 +11,6 @@ export interface iStore {
   clearCompletedTodos: () => void;
   createNewTodo: (value: string) => void;
   deleteOneTodo: (id: string) => void;
+  deleteAllTodos: () => void;
+  deleteCompletedTodos: () => void;
 }

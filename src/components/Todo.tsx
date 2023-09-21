@@ -12,10 +12,10 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog.tsx';
 import { Trash } from 'lucide-react';
-import { useDeleteTodos, useTodo, useToggleTodoState } from '@/hooks';
+import { useDeleteOneTodo, useTodo, useToggleTodoState } from '@/hooks';
 
 export const Todo: FC<{ id: string }> = ({ id }) => {
-  const deleteTodo = useDeleteTodos();
+  const deleteTodo = useDeleteOneTodo();
   const switchTodoState = useToggleTodoState();
   const todo = useTodo(id);
   if (!todo) {
@@ -24,7 +24,7 @@ export const Todo: FC<{ id: string }> = ({ id }) => {
   const { completed, value } = todo;
   return (
     <label
-      className={`cursor-pointer bg-sky-100 hover:bg-sky-200 flex items-center gap-5 max-w-2xl p-2 mb-3 rounded-lg border-solid border-2 border-sky-500 justify-between ${
+      className={`cursor-pointer bg-sky-100 hover:bg-sky-200 flex items-center gap-5 max-w-full p-2 mb-3 rounded-lg border-solid border-2 border-sky-500 justify-between ${
         completed && 'text-gray-500 bg-gray-300 hover:bg-gray-400 border-gray-500 line-through'
       }`}
     >
