@@ -7,7 +7,7 @@ describe('Todo', () => {
   test('should render with initial state', async () => {
     renderTodo('1');
 
-    expect(await screen.findByText(/^todo1$/i)).toBeInTheDocument();
+    expect(await screen.findByText(/todo1/i)).toBeInTheDocument();
     expect(await screen.findByRole('button')).toBeInTheDocument();
   });
   test('should not be checked', async () => {

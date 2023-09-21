@@ -7,25 +7,25 @@ const { create: actualCreate, createStore: actualCreateStore } =
 const initialTodos: iTodo[] = [
   {
     id: '1',
-    value: 'todo1',
+    value: 'todo1 active',
     completed: false,
     created: 0,
   },
   {
     id: '2',
-    value: 'todo completed',
+    value: 'todo2 completed',
     completed: true,
     created: 1,
   },
   {
     id: '3',
-    value: 'todo3',
+    value: 'todo3 active',
     completed: false,
     created: 2,
   },
   {
     id: '4',
-    value: 'Todo!',
+    value: 'todo4 active',
     completed: false,
     created: 3,
   },
@@ -53,6 +53,13 @@ export const createStore = (<T>(stateCreator: zustand.StateCreator<T>) => {
   return store;
 }) as typeof zustand.createStore;
 
+beforeEach(() => {
+  act(() => {
+    storeResetFns.forEach((resetFn) => {
+      resetFn();
+    });
+  });
+});
 afterEach(() => {
   act(() => {
     storeResetFns.forEach((resetFn) => {

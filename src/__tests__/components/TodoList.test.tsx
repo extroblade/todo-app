@@ -1,6 +1,6 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
-import { expect } from 'vitest';
+import { expect } from "vitest";
 import { TodoList } from '@/components/TodoList.tsx';
 
 describe('TodoList', () => {
@@ -17,10 +17,12 @@ describe('TodoList', () => {
       }
     };
   });
+
   it('should use mocked initial state ', async () => {
     renderTodos();
 
-    expect(await screen.findByText(/^completed$/i)).toBeInTheDocument();
+    expect(await screen.findByText(/todo2 completed/i)).toBeInTheDocument();
+    expect(await screen.findByText(/todo1/i)).toBeInTheDocument();
   });
   test('should not be able to use form buttons without input value', async () => {
     renderTodos();
@@ -87,6 +89,27 @@ describe('TodoList', () => {
 
     expect(await screen.findByText(/4 active left/i)).toBeInTheDocument();
   });
+  it('should delete all todos', async () => {
+    const user = userEvent.setup();
+    renderTodos();
+
+    await act(async () => {
+      await user.click(screen.getByText(/delete all/i));
+    });
+
+    expect(await screen.findByText(/nothing found/i)).toBeInTheDocument();
+  });
+  it('should delete completed todos', async () => {
+    const user = userEvent.setup();
+    renderTodos();
+    const completedTodo = screen.getByText(/todo2 completed/i);
+
+    await act(async () => {
+      await user.click(screen.getByText(/delete completed/i));
+    });
+
+    expect(completedTodo).not.toBeInTheDocument();
+  });
   it('should delete one todo', async () => {
     const user = userEvent.setup();
     renderTodos();
@@ -100,7 +123,7 @@ describe('TodoList', () => {
 
     expect(await screen.findByText(/2 active left/i)).toBeInTheDocument();
   });
-  it('should toggle todo/s state', async () => {
+  it('should toggle todos\' state', async () => {
     const user = userEvent.setup();
     renderTodos();
 
